@@ -1,6 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+// Namespace Seller Controller
+use App\Http\Controllers\Seller\ProductSellerController;
+// Namespace User Controller
+use App\Http\Controllers\User\WishlistController;
+use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\ChatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,9 +25,18 @@ Route::get('/', function () {
 })->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //** SELLER **//
+        Route::get('/my-product',[ProductSellerController::class, 'my_product'])->name('product-seller.my-product');
+        Route::get('/add-product',[ProductSellerController::class, 'add_product'])->name('product-seller.add-product');
+
+
+    //** USER **//
+        Route::get('/chat',[ChatController::class, 'index'])->name('chat');
+        Route::get('/profile',[ProfileController::class, 'index'])->name('profile');
+        Route::get('/wishlist',[WishlistController::class, 'index'])->name('wishlist');
+
+
 });
 
 require __DIR__.'/auth.php';

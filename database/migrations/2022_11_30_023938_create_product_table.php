@@ -18,9 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->text('deskripsi')->nullable();
             $table->integer('category_id');
-            $table->integer('inventory_id');
             $table->decimal('harga');
-            $table->integer('discount_id');
             $table->timestamps();
         });
     }

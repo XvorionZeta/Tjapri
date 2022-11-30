@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Seller;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Product;
+use App\Models\ProductInventory;
+
 class ProductSellerController extends Controller
 {
 
@@ -15,7 +18,7 @@ class ProductSellerController extends Controller
 
     public function add_product()
     {
-        return view('seller.produk-saya');
+        return view('seller.tambah-produk');
     }
 
     /**
@@ -36,7 +39,27 @@ class ProductSellerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama'  => ['required', 'string', 'max:255'],
+            'harga' => ['required', 'integer'],
+            'deskripisi' => ['required', 'string'],
+            'category_id' => ['required', 'integer'],
+        ]);
+
+        $product = Product::create([
+                        'nama'  => $request->nama,
+                        'harga' => $request->harga,
+                        'deskripsi' => $request->deskripsi,
+                        'category_id' => $request->kategori,
+                    ]);
+
+        ProductInventory::create([
+            'quantity'  => $request->qty,
+            'product_id' => $product->id,
+        ]);
+
+
+        return $this->my_product();
     }
 
     /**

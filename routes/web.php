@@ -27,8 +27,12 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
 
     //** SELLER **//
-        Route::get('/my-product',[ProductSellerController::class, 'my_product'])->name('product-seller.my-product');
-        Route::get('/add-product',[ProductSellerController::class, 'add_product'])->name('product-seller.add-product');
+        Route::name('product-seller.')
+             ->group(function () {
+                Route::get('/my-product',[ProductSellerController::class, 'my_product'])->name('my-product');
+                Route::get('/add-product',[ProductSellerController::class, 'add_product'])->name('add-product');
+                Route::put('/add-product',[ProductSellerController::class, 'store'])->name('add-product.store');
+             });
 
 
     //** USER **//

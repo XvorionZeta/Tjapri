@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\User;
 
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\UserDetails;
 
 class ProfileController extends Controller
 {
@@ -14,7 +17,10 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('user.profile');
+        $data = UserDetails::where('user_np',Auth::user()->np)->first();
+        return view('user.profile',[
+            'data' => $data,
+        ]);
     }
 
     /**

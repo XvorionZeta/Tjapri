@@ -1,7 +1,7 @@
-<div class="hidden w-64 p-4 bg-white rounded-md shadow-md sm:block h-fit drop-shadow-md">
+<div class="hidden w-64 p-4 bg-white rounded-md shadow-md md:block h-fit drop-shadow-md">
     {{-- Foto & Username --}}
     <div class="pb-4 border-b-2">
-        <img src="{{ asset('images/man.svg') }}" class="inline object-cover rounded-full h-14 w-14" alt="store_ava">
+        <img src="{{ asset('images/avatar/'.App\Models\UserDetails::where('user_np',Auth::user()->np)->value('foto')) }}" class="inline object-cover rounded-full h-14 w-14" alt="store_ava">
         <p class="inline pl-2 mb-2 text-sm font-bold leading-tight text-slate-700">{{ Auth::user()->name }}</p>
     </div>
     {{-- Menu Penjual --}}

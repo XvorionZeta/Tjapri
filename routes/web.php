@@ -1,6 +1,7 @@
 <?php
 
 // Namespace Seller Controller
+use App\Http\Livewire\Dashboard;
 use App\Http\Controllers\Seller\ProductSellerController;
 // Namespace User Controller
 use App\Http\Controllers\User\WishlistController;
@@ -20,9 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::get('/',Dashboard::class)->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 

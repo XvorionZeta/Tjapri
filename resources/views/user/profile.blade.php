@@ -3,7 +3,7 @@
         @include('layouts.user-nav')
         <div class="w-full p-6 bg-white rounded-lg shadow-lg drop-shadow-lg">
             <h5 class="mb-2 text-lg font-bold leading-tight text-gray-900 border-b-2">Biodata Diri</h5>
-            <div class="flex flex-wrap justify-center gap-4 w-full md:p-4">
+            <div class="flex flex-wrap justify-center w-full gap-4 md:p-4">
                 {{-- Form ganti foto --}}
                 <div class="max-w-sm md:basis-2/5">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg drop-shadow-md">

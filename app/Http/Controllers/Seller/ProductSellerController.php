@@ -40,24 +40,23 @@ class ProductSellerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama'  => ['required', 'string', 'max:255'],
-            'harga' => ['required', 'integer'],
-            'deskripisi' => ['required', 'string'],
-            'category_id' => ['required', 'integer'],
+            'nama'  => 'required|string|max:255',
+            'harga' => 'required|integer',
+            'deskripsi' => 'required|string|max:255',
+            'category' => 'required|integer',
         ]);
 
         $product = Product::create([
                         'nama'  => $request->nama,
                         'harga' => $request->harga,
                         'deskripsi' => $request->deskripsi,
-                        'category_id' => $request->kategori,
+                        'category_id' => $request->category,
                     ]);
 
         ProductInventory::create([
             'quantity'  => $request->qty,
             'product_id' => $product->id,
         ]);
-
 
         return $this->my_product();
     }

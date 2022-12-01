@@ -1,15 +1,15 @@
 @extends('layouts.app')
 @section('content')
-<div class="flex justify-center gap-4 px-4 py-10 mx-auto max-w-7xl">
+<div class="flex justify-center gap-4 px-4 py-10 mx-auto lg:px-36">
     @include('layouts.user-nav')
-    <div class="w-full p-4 overflow-hidden md:p-6 bg-white rounded-lg shadow-lg drop-shadow-lg">
+    <div class="w-full p-4 overflow-hidden bg-white rounded-lg shadow-lg md:p-6 drop-shadow-lg">
         {{-- Header --}}
         <h5 class="mb-2 text-lg font-bold leading-tight text-gray-900 border-b-2">Tambah Produk</h5>
         <form method="post" action="{{ route('product-seller.add-product.store') }}">
             @csrf
             @method('put')
-            <div class="form-group mb-6">
-              <label for="nama" class="form-label inline-block mb-2 text-gray-700">Nama Produk</label>
+            <div class="mb-6 form-group">
+              <label for="nama" class="inline-block mb-2 text-gray-700 form-label">Nama Produk</label>
               <input type="text" class="form-control
                 block
                 w-full
@@ -27,8 +27,8 @@
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="nama" name="nama"
                 aria-describedby="emailHelp" placeholder="Nama Produk">
             </div>
-            <div class="form-group mb-6">
-              <label for="deskripsi" class="form-label inline-block mb-2 text-gray-700">Deskripsi</label>
+            <div class="mb-6 form-group">
+              <label for="deskripsi" class="inline-block mb-2 text-gray-700 form-label">Deskripsi</label>
               <input type="text" class="form-control block
                 w-full
                 px-3
@@ -45,8 +45,8 @@
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="deskripsi" name="deskripsi"
                 placeholder="Deskripsi Produk">
             </div>
-            <div class="form-group mb-6">
-              <label for="harga" class="form-label inline-block mb-2 text-gray-700">Harga</label>
+            <div class="mb-6 form-group">
+              <label for="harga" class="inline-block mb-2 text-gray-700 form-label">Harga</label>
               <input type="number" class="form-control block
                 w-full
                 px-3
@@ -63,8 +63,8 @@
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="harga" name="harga"
                 placeholder="Rp.">
             </div>
-            <div class="form-group mb-6">
-              <label for="harga" class="form-label inline-block mb-2 text-gray-700">Jumlah Qantity</label>
+            <div class="mb-6 form-group">
+              <label for="harga" class="inline-block mb-2 text-gray-700 form-label">Jumlah Qantity</label>
               <input type="number" class="form-control block
                 w-full
                 px-3
@@ -81,7 +81,7 @@
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="qty" name="qty"
                 placeholder="Qty">
             </div>
-            <div class="form-group mb-6">
+            <div class="mb-6 form-group">
               <!-- Required form plugin -->
                 <link
                 href="https://cdn.jsdelivr.net/npm/@tailwindcss/custom-forms@0.2.1/dist/custom-forms.css"
@@ -90,7 +90,7 @@
 
                 <label class="block text-left" style="max-width: 300px">
                 <span class="text-gray-700">Kategori</span>
-                <select class="form-multiselect block w-full mt-1" id="category">
+                <select class="block w-full mt-1 form-multiselect" id="category" name="category">
                   <option value="1">Produk Eksklusif</option>
                   <option value="2">Makanan</option>
                   <option value="3">jasa</option>
@@ -99,9 +99,9 @@
                 </select>
                 </label>
             </div>
-            <div class="form-group mb-6">
-              <div class="mb-3 w-full">
-                <label for="formFile" class="form-label inline-block mb-2 text-gray-700">Gambar Produk</label>
+            <div class="mb-6 form-group">
+              <div class="w-full mb-3">
+                <label for="formFile" class="inline-block mb-2 text-gray-700 form-label">Gambar Produk</label>
                 <input class="form-control
                 block
                 w-full

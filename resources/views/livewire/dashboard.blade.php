@@ -95,7 +95,7 @@
     </div>
     {{-- Produk Terbaru 1 --}}
     <div class="flex justify-start p-4 mt-4 bg-white shadow drop-shadow-md rounded-2xl">
-        <div class="min-w-full px-6 py-2 bg-white rounded-lg shadow">
+        <div class="min-w-full px-6 py-2 bg-white rounded-lg">
             <h5 class="pb-2 mb-2 text-xl font-bold leading-tight text-gray-900 border-b-2">Produk Terbaru</h5>
             <div class="flex items-start justify-start gap-3 mx-4 my-2 overflow-auto">
                 {{-- Item --}}
@@ -111,10 +111,11 @@
                                 <div class="flex flex-col justify-start">
                                     {{-- Penjelasan Produk --}}
                                     <div class="p-3 mt-2">
-                                        <p class="text-sm font-light leading-tight text-gray-600 line-clamp-2">{{ $new->nama }}</p>
-                                        <div class="flex gap-2 mt-3 flex-nowrap">
-                                            <span class="text-sm font-semibold text-orange-600">Rp. </span>
-                                            <h6 class="inline-block text-base font-bold text-orange-600">{{ number_format($new->harga,0) }}</h6>
+                                        <h6 class="text-sm font-extrabold text-gray-800 line-clamp-2">{{ $new->nama }}</h6>
+                                        <p class="text-sm font-medium leading-tight text-gray-500 line-clamp-2">{{ $new->deskripsi }}</p>
+                                        <div class="flex gap-0.5 mt-2 flex-nowrap">
+                                            <p class="inline-block text-base font-bold text-orange-600">Rp. </p>
+                                            <h5 class="inline-block text-base font-bold text-orange-600">{{ number_format($new->harga,0) }}</h5>
                                         </div>
                                     </div>
                                     <div class="p-1 border">
@@ -135,8 +136,8 @@
                                             </path>
                                         </svg>
                                         <span class="text-sm font-light text-gray-500">4.8 | <span
-                                                class="font-semibold text-blue-500">45</span>
-                                            Terjual</span>
+                                                class="font-semibold text-blue-500">{{ number_format($new->quantity) }}</span>
+                                            In Stock</span>
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +150,7 @@
     </div>
     {{-- Paling Sering Di Lihat --}}
     <div class="flex justify-start p-4 mt-4 bg-white shadow drop-shadow-md rounded-2xl">
-        <div class="min-w-full px-6 py-2 bg-white rounded-lg shadow">
+        <div class="min-w-full px-6 py-2 bg-white rounded-lg">
             <h5 class="pb-2 mb-2 text-xl font-bold leading-tight text-gray-900 border-b-2">Paling Sering Di Lihat</h5>
             <div class="flex items-start justify-start gap-3 mx-4 my-2 overflow-auto">
                 {{-- Item 1 --}}
@@ -205,57 +206,54 @@
     </div>
     {{-- Barang Lainnya --}}
     <div class="flex justify-start p-4 mt-4 bg-white shadow drop-shadow-md rounded-2xl">
-        <div class="min-w-full px-6 py-2 bg-white rounded-lg shadow">
+        <div class="min-w-full px-6 py-2 bg-white rounded-lg">
             <h5 class="pb-2 mb-2 text-xl font-bold leading-tight text-gray-900 border-b-2">Produk Lainnya</h5>
             <div class="flex items-start justify-start gap-3 mx-4 my-2 overflow-auto">
                 @foreach ($lainnya as $lain)
                 {{-- Item 1 --}}
-                <div class="inline-block w-40 max-w-sm border rounded-lg shadow-sm">
-                    <a href="#">
-                        <div class="flex flex-col justify-center">
-                            <div class="h-40">
-                                <img class="object-cover w-full h-full"
-                                    src="https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-                                    alt="">
-                            </div>
-                            <div class="flex flex-col justify-start">
-                                {{-- Penjelasan Produk --}}
-                                <div class="p-3 mt-2">
-                                    <p class="text-sm font-light leading-tight text-gray-600 line-clamp-2">Lorem ipsum
-                                        dolor sit amet
-                                        consectetur
-                                        adipisicing
-                                        elit.</p>
-                                    <div class="flex mt-3 flex-nowrap">
-                                        <span class="text-sm font-semibold text-orange-600">Rp.</span>
-                                        <h6 class="inline-block text-base font-bold text-orange-600">850.000.000</h6>
+                    <div class="inline-block w-40 max-w-sm border rounded-lg shadow-sm">
+                        <a href="{{ url('/detailProduk') }}">
+                            <div class="flex flex-col justify-center">
+                                <div class="h-40">
+                                    <img class="object-cover w-full h-full rounded-t-md"
+                                        src="{{ asset('images/product/'.App\Models\ProductPicture::where('product_id',$lain->id)->value('foto')) }}"
+                                        alt="">
+                                </div>
+                                <div class="flex flex-col justify-start">
+                                    {{-- Penjelasan Produk --}}
+                                    <div class="p-3 mt-2">
+                                        <h6 class="text-sm font-extrabold text-gray-800 line-clamp-2">{{ $lain->nama }}</h6>
+                                        <p class="text-sm font-medium leading-tight text-gray-500 line-clamp-2">{{ $lain->deskripsi }}</p>
+                                        <div class="flex gap-0.5 mt-2 flex-nowrap">
+                                            <p class="inline-block text-base font-bold text-orange-600">Rp. </p>
+                                            <h5 class="inline-block text-base font-bold text-orange-600">{{ number_format($lain->harga,0) }}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="p-1 border">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                            class="inline-block w-5 h-5 my-auto text-gray-500">
+                                            <path fill-rule="evenodd"
+                                                d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-sm font-light text-gray-500">Karawang</span>
+                                    </div>
+                                    {{-- Rating Produk --}}
+                                    <div class="p-1 border">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                            class="inline-block w-5 h-5 text-yellow-500 fill-current">
+                                            <path
+                                                d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z">
+                                            </path>
+                                        </svg>
+                                        <span class="text-sm font-light text-gray-500">4.8 | <span
+                                                class="font-semibold text-blue-500">{{ number_format($lain->quantity) }}</span>
+                                            In Stock</span>
                                     </div>
                                 </div>
-                                <div class="p-1 border">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                        class="inline-block w-5 h-5 my-auto text-gray-500">
-                                        <path fill-rule="evenodd"
-                                            d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    <span class="text-sm font-light text-gray-500">Karawang</span>
-                                </div>
-                                {{-- Rating Produk --}}
-                                <div class="p-1 border">
-                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                                        class="inline-block w-5 h-5 text-yellow-500 fill-current">
-                                        <path
-                                            d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z">
-                                        </path>
-                                    </svg>
-                                    <span class="text-sm font-light text-gray-500">4.8 | <span
-                                            class="font-semibold text-blue-500">45</span>
-                                        Terjual</span>
-                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
                 {{-- End Item 1 --}}
                 @endforeach
             </div>

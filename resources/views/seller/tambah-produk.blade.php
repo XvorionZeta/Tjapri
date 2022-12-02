@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<div class="flex justify-center gap-4 px-4 py-10 mx-auto lg:px-36">
+<div class="flex justify-center gap-4 px-4 py-10 mx-auto max-w-7xl">
     @include('layouts.user-nav')
     <div class="w-full p-4 overflow-hidden bg-white rounded-lg shadow-lg md:p-6 drop-shadow-lg">
         {{-- Header --}}
         <h5 class="mb-2 text-lg font-bold leading-tight text-gray-900 border-b-2">Tambah Produk</h5>
-        <form method="post" action="{{ route('product-seller.add-product.store') }}">
+        <form method="post" action="{{ route('product-seller.add-product.store') }}" enctype="multipart/form-data">
             @csrf
             @method('put')
             <div class="mb-6 form-group">
@@ -28,24 +28,6 @@
                 aria-describedby="emailHelp" placeholder="Nama Produk">
             </div>
             <div class="mb-6 form-group">
-              <label for="deskripsi" class="inline-block mb-2 text-gray-700 form-label">Deskripsi</label>
-              <input type="text" class="form-control block
-                w-full
-                px-3
-                py-1.5
-                text-base
-                font-normal
-                text-gray-700
-                bg-white bg-clip-padding
-                border border-solid border-gray-300
-                rounded
-                transition
-                ease-in-out
-                m-0
-                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="deskripsi" name="deskripsi"
-                placeholder="Deskripsi Produk">
-            </div>
-            <div class="mb-6 form-group">
               <label for="harga" class="inline-block mb-2 text-gray-700 form-label">Harga</label>
               <input type="number" class="form-control block
                 w-full
@@ -64,7 +46,7 @@
                 placeholder="Rp.">
             </div>
             <div class="mb-6 form-group">
-              <label for="harga" class="inline-block mb-2 text-gray-700 form-label">Jumlah Qantity</label>
+              <label for="harga" class="inline-block mb-2 text-gray-700 form-label">Stok Barang</label>
               <input type="number" class="form-control block
                 w-full
                 px-3
@@ -100,10 +82,8 @@
                 </label>
             </div>
             <div class="mb-6 form-group">
-              <div class="w-full mb-3">
-                <label for="formFile" class="inline-block mb-2 text-gray-700 form-label">Gambar Produk</label>
-                <input class="form-control
-                block
+              <label for="deskripsi" class="inline-block mb-2 text-gray-700 form-label">Deskripsi Produk</label>
+              <textarea rows="5" class="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -116,7 +96,52 @@
                 transition
                 ease-in-out
                 m-0
-                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" id="formFile">
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="deskripsi" name="deskripsi"
+                placeholder="Deskripsi Produk"></textarea>
+            </div>
+            <div class="mb-6 form-group">
+              <label for="deskripsi" class="inline-block mb-2 text-gray-700 form-label">Spesifikasi Produk</label>
+              <textarea rows="5" class="form-control block
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="spec" name="spec"
+                placeholder="Deskripsi Produk"></textarea>
+            </div>
+            <div class="mb-6 form-group">
+              <div class="w-full mb-3 flex flex-col gap-3">
+                <span>Foto</span>
+                <div class="flex justify-start gap-4">
+                    <div>
+                        <label for="image" class="inline-block mb-2 text-gray-700 form-label">
+                            <div class="border drop-shadow-md shadow p-4 w-20 h-20 flex justify-center items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                  </svg>
+                            </div>
+                        </label>
+                        <input class="" type="file" id="image" name="image">
+                    </div>
+                    {{-- <div>
+                        <label for="image" class="inline-block mb-2 text-gray-700 form-label">
+                            <div class="border drop-shadow-md shadow p-4 w-20 h-20 flex justify-center items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                  </svg>
+                            </div>
+                        </label>
+                        <input class="hidden" type="file" id="image" name="image">
+                    </div> --}}
+                </div>
               </div>
             </div>
 

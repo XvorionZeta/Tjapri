@@ -20,7 +20,8 @@ class Dashboard extends Component
 
     public function produk_terbaru()
     {
-        $produk_terbaru = Product::orderBy('created_at')
+        $produk_terbaru = Product::join('product_inventory','product.id','=','product_inventory.product_id')
+                                 ->orderBy('product.created_at')
                                  ->get()
                                  ->take(10);
 
@@ -29,7 +30,8 @@ class Dashboard extends Component
 
     public function produk_lainnya()
     {
-        $produk_lainnya = Product::all();
+        $produk_lainnya = Product::join('product_inventory','product.id','=','product_inventory.product_id')
+                                 ->get();
 
         return $produk_lainnya;
     }

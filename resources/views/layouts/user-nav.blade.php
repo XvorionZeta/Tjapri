@@ -1,4 +1,4 @@
-<div class="hidden w-64 p-4 bg-white rounded-md shadow-md md:block h-fit drop-shadow-md">
+<div class="hidden w-64 p-4 bg-white rounded-2xl shadow-md md:block h-fit drop-shadow-md">
     {{-- Foto & Username --}}
     <div class="pb-4 border-b-2">
         <img src="{{ asset('images/avatar/'.App\Models\UserDetails::where('user_np',Auth::user()->np)->value('foto')) }}" class="inline object-cover rounded-full h-14 w-14" alt="store_ava">

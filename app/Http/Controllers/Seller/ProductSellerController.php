@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Seller;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Auth;
 use App\Models\Product;
+use App\Models\ProductPicture;
 use App\Models\ProductInventory;
 
 class ProductSellerController extends Controller
@@ -39,23 +41,38 @@ class ProductSellerController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama'  => 'required|string|max:255',
-            'harga' => 'required|integer',
-            'deskripsi' => 'required|string|max:255',
-            'category' => 'required|integer',
-        ]);
+        // $request->validate([
+        //     'qty' => 'nullable|integer',
+        //     'nama'  => 'required|string|max:255',
+        //     'spec'  => 'nullable|string|max:255',
+        //     'harga' => 'required|integer',
+        //     'image' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
+        //     'category' => 'required|integer',
+        //     'deskripsi'   => 'nullable|string|max:255',
+        // ]);
+
+        // dd($request->all());
+
+        $imageName = Auth::user()->np.time().'.'.$request->image->extension();
+
+        $request->image->move(public_path('images/product'), $imageName);
 
         $product = Product::create([
                         'nama'  => $request->nama,
                         'harga' => $request->harga,
                         'deskripsi' => $request->deskripsi,
+                        'spesifikasi' => $request->spec,
                         'category_id' => $request->category,
                     ]);
 
         ProductInventory::create([
             'quantity'  => $request->qty,
             'product_id' => $product->id,
+        ]);
+
+        ProductPicture::create([
+            'product_id' => $product->id,
+            'foto' => $imageName,
         ]);
 
         return $this->my_product();

@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',Dashboard::class)->name('dashboard');
+Route::view('/detailProduk', 'product.detail-produk');
 
 Route::middleware('auth')->group(function () {
 

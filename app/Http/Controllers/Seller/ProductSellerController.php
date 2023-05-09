@@ -63,6 +63,7 @@ class ProductSellerController extends Controller
                         'deskripsi' => $request->deskripsi,
                         'spesifikasi' => $request->spec,
                         'category_id' => $request->category,
+                        'seller_id' => Auth::user()->id,
                     ]);
 
         ProductInventory::create([

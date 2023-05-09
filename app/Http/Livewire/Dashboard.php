@@ -18,7 +18,7 @@ class Dashboard extends Component
         ]);
     }
 
-    public function produk_terbaru()
+    private function produk_terbaru()
     {
         $produk_terbaru = Product::join('product_inventory','product.id','=','product_inventory.product_id')
                                  ->orderBy('product.created_at')
@@ -28,7 +28,7 @@ class Dashboard extends Component
         return $produk_terbaru;
     }
 
-    public function produk_lainnya()
+    private function produk_lainnya()
     {
         $produk_lainnya = Product::join('product_inventory','product.id','=','product_inventory.product_id')
                                  ->get();

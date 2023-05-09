@@ -8,6 +8,8 @@ use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\ChatController;
 use Illuminate\Support\Facades\Route;
+// Namespace Product
+use App\Http\Livewire\Product\ProductDetailsLivewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',Dashboard::class)->name('dashboard');
-Route::view('/detailProduk', 'product.detail-produk');
+// Route::view('/detailProduk', 'product.detail-produk');
 
 Route::middleware('auth')->group(function () {
 
@@ -39,6 +41,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/chat',[ChatController::class, 'index'])->name('chat');
         Route::get('/profile',[ProfileController::class, 'index'])->name('profile');
         Route::get('/wishlist',[WishlistController::class, 'index'])->name('wishlist');
+
+
+    //** PRODUCT **//
+        Route::name('product.')
+             ->group(function () {
+                Route::get('/product-details/{id}',ProductDetailsLivewire::class)->name('product-details');
+             });
 
 
 });

@@ -14,4 +14,15 @@ class Product extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function seller_details()
+    {
+        return $this->hasOne(UserDetails::class,'id','seller_id');
+    }
+
+    public function pic()
+    {
+        return $this->hasMany(ProductPicture::class,'product_id','id');
+    }
+
 }
